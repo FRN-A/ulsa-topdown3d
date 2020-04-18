@@ -6,6 +6,12 @@ public class player : MonoBehaviour
 {
     [SerializeField]
     float moveSpeed;
+    Animator anim;
+
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -15,6 +21,7 @@ public class player : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(Axis.normalized);
         }
+        anim.SetFloat("move", Mathf.Abs(Axis.normalized.magnitude));
     }
 
     Vector3 Axis
